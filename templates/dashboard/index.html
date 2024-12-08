@@ -1,0 +1,669 @@
+{% extends "../layout.html" %}
+{% load socialaccount %}
+
+{% block content %}
+
+
+
+
+{% comment %} <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100"> {% endcomment %}
+    <div class="pt-10 md:pt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-5">
+        <h3 class="text-xl md:text-2xl font-semibold tracking-wide">Overview</h3>
+      </div>
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-6">
+        <!-- Total Videos Card -->
+        <div class="bg-white dark:bg-gray-800 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+          <div class="p-6">
+            <div class="flex items-center">
+              <div class="w-0 flex-1">
+                <dl>
+                  <dt class="text-sm font-medium truncate flex items-center justify-between">
+                    <span>Total Videos</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-gray-600 dark:text-gray-400">
+                      <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"></path>
+                    </svg>
+                  </dt>
+                  <dd>
+                    <div class="mt-4 text-2xl font-extrabold text-gray-700 dark:text-gray-300">
+                      0<span class="font-medium text-lg">/2</span>
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Total Spaces Card -->
+        <div class="bg-white dark:bg-gray-800 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+          <div class="p-6">
+            <div class="flex items-center">
+              <div class="w-0 flex-1">
+                <dl>
+                  <dt class="text-sm font-medium truncate flex items-center justify-between">
+                    <span>Total Spaces</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-gray-600 dark:text-gray-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"></path>
+                    </svg>
+                  </dt>
+                  <dd>
+                    <div class="mt-4 text-2xl font-extrabold text-gray-700 dark:text-gray-300">
+                      1
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Current Plan Card -->
+        <div class="bg-white dark:bg-gray-800 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+          <div class="p-6">
+            <div class="flex items-center">
+              <div class="w-0 flex-1">
+                <dl>
+                  <dt class="text-sm font-medium truncate flex items-center justify-between">
+                    <span>Current Plan</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-5 w-5 text-gray-600 dark:text-gray-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"></path>
+                    </svg>
+                  </dt>
+                  <dd>
+                    <div class="mt-4 text-2xl font-extrabold text-gray-700 dark:text-gray-300">
+                      <div class="flex justify-between">
+                        <span>Starter</span>
+                        <a href="/pricing" class="inline-flex items-center px-2.5 py-0.5 rounded-md border text-sm font-medium bg-purple-100 text-purple-800 hover:bg-purple-200 border-purple-300">
+                          ✨ Upgrade
+                        </a>
+                      </div>
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+
+
+
+    {% comment %} <div class="py-12 md:py-20 py-24 sm:py-32 "> {% endcomment %}
+    <div class="pt-10 md:pt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex-1 flex items-center justify-between pb-5">
+        <h3 class="h3 font-semibold tracking-wide">Spaces</h3>
+        <div class="relative inline-block text-left">
+          <div class="relative flex-shrink-0 pl-4 ml-4">
+            <button  onclick="createSpaceToggle()"
+              class="create-new-space-btn btn-sm text-white bg-purple-600 hover:bg-purple-700 font-semibold rounded-md" 
+              id="headlessui-menu-button-2" 
+              type="button" 
+              aria-haspopup="true" 
+              aria-expanded="false">
+              <span class="flex text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Create a new space
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    
+      <div class="flex-1 flex items-center justify-start py-3">
+        <div class="w-full">
+          <label for="search" class="sr-only">Search</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <input 
+              id="search" 
+              name="search" 
+              class="block w-full pl-10 pr-3 py-2 dark:text-white border border-gray-200 dark:border-gray-700 rounded-md leading-5 bg-white dark:bg-gray-800 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500 sm:text-sm" 
+              placeholder="Search testimonials by name, email, or keywords" 
+              type="search" 
+              value="">
+          </div>
+        </div>
+      </div>
+    
+      <ul class="mt-6 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <li class="col-span-1 flex flex-col bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200 ease-in-out">
+          <div class="flex-1 p-6">
+            <div class="flex items-center justify-between">
+              <a class="flex items-center space-x-3 group" href="/products/bls-testimonials">
+                <img 
+                  loading="lazy" 
+                  class="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex-shrink-0 object-contain" 
+                  src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/spaces%2Fbls-testimonials%2Flogo?alt=media&amp;token=f2035445-b149-49aa-a1c1-fb9a7d848864" 
+                  alt="BLS Testimonials">
+                <span 
+                  class="text-gray-800 dark:text-gray-100 font-semibold truncate group-hover:text-black dark:group-hover:text-white text-base" 
+                  title="">
+                  BLS Testimonials
+                </span>
+              </a>
+              <div class="relative inline-block text-left">
+                <div>
+                  <button 
+                    class="rounded-md flex items-center justify-center w-8 h-8 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200" 
+                    id="headlessui-menu-button-3" 
+                    type="button" 
+                    aria-haspopup="true" 
+                    aria-expanded="false" onclick="spaceToggleDropdown()">
+                    <span class="sr-only">Open options</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-5 w-5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
+                    </svg>
+                  </button>
+
+                  
+                      <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hidden" id="space-dropdown-menu" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                        <div class="py-1" role="none">
+                          <!-- Active: "bg-gray-100 text-gray-900 outline-none", Not Active: "text-gray-700" -->
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0">Edit</a>
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-1">Duplicate</a>
+                        </div>
+                        <div class="py-1" role="none">
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-2">Archive</a>
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-3">Move</a>
+                        </div>
+                        <div class="py-1" role="none">
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-4">Share</a>
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-5">Add to favorites</a>
+                        </div>
+                        <div class="py-1" role="none" onclick="deleteSpaceToggle()">
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-6">Delete</a>
+                        </div>
+                      </div>
+                   
+                  {% comment %} ############## {% endcomment %}
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 flex justify-between items-center text-gray-500 dark:text-gray-400">
+              <div class="flex">
+                <p class="text-sm font-medium">Videos: </p>
+                <p class="text-sm ml-2">0</p>
+              </div>
+              <div class="flex">
+                <p class="text-sm font-medium">Text: </p>
+                <p class="text-sm ml-2">1</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+
+    
+
+  
+  {% comment %} </body> {% endcomment %}
+
+    {% comment %} <h1>hello world</h1>
+    {% if user.is_authenticated %}
+    <p>Welcome. You are logged in as {{user.username}} </p>
+
+    {% else %}
+    <a href="{% provider_login_url 'google' %}">Login with Google</a>
+    {% endif %}
+
+
+
+    <p>Click here to <a href="/auth/user-logout">Sign out</a></p>
+ {% endcomment %}
+
+
+
+
+
+
+     
+ <div class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" id ="delete-space" aria-modal="true">
+  
+  <div class="fixed inset-0 bg-gray-500/75 transition-opacity"  aria-hidden="true"></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      
+      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:size-10">
+              <svg class="size-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+              <h3 class="text-base font-semibold text-gray-900" id="modal-title">Delete Space</h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">Are you sure you want to delete your space? All of your data will be permanently removed. This action cannot be undone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+          <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Deactivate</button>
+          <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" onclick="deleteSpaceToggle()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+{% comment %} create space  {% endcomment %}
+
+
+{% comment %} <div id="create-space" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 flex justify-center items-center">
+  <div class="relative p-4 w-full max-w-6xl max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 flex flex-col md:flex-row overflow-auto max-h-screen ">
+      <!-- Modal header -->
+      <div class="bg-blue-200 w-full md:w-2/5">
+      <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+          Preview
+        </h3>
+        
+      </div>
+      <!-- Modal body -->
+      <div class="p-4 md:p-5 space-y-4">
+        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+        </p>
+        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+        </p>
+      </div>
+      <!-- Modal footer -->
+      <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
+        <button type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
+      </div>
+    </div> {% endcomment %}
+
+
+
+
+    {% comment %} <div class="bg-red-200 w-full md:w-3/5">
+      <div class="flex items-center justify-center p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+        <h3 class="text-center text-xl font-semibold text-gray-900 dark:text-white ">
+          Create a new Space
+        </h3>
+        <button onclick="createSpaceToggle()" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+      <!-- Modal body -->
+      <div class="p-4 md:p-5 space-y-4">
+        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+        </p>
+        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+        </p>
+      </div>
+      <!-- Modal footer -->
+      <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
+        <button type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
+      </div>
+
+    </div>
+    </div>
+
+  </div>
+</div> {% endcomment %}
+
+
+
+{% comment %} <div class="bg-white shadow-lg rounded-lg w-full max-w-4xl flex flex-col md:flex-row">
+  <!-- Left Section: Form -->
+  <section class="w-full md:w-1/2 p-6 border-r border-gray-200">
+    <header class="mb-6">
+      <h1 class="text-xl font-bold text-gray-800">Header Goes Here...</h1>
+      <p class="text-sm text-gray-600">Your custom message goes here...</p>
+    </header>
+    <form id="testimonial-form" class="space-y-4">
+      <h2 class="text-lg font-semibold text-gray-800">Questions</h2>
+
+      <div>
+        <label for="who" class="block text-sm font-medium text-gray-700">Who are you / what are you working on?</label>
+        <textarea id="who" placeholder="Tell us about yourself..." class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+      </div>
+
+      <div>
+        <label for="help" class="block text-sm font-medium text-gray-700">How has [our product / service] helped you?</label>
+        <textarea id="help" placeholder="Share your experience..." class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+      </div>
+
+      <div>
+        <label for="best" class="block text-sm font-medium text-gray-700">What is the best thing about [our product / service]?</label>
+        <textarea id="best" placeholder="Highlight the best features..." class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+      </div>
+
+      <div>
+        <p class="text-sm font-medium text-gray-700 mb-2">Would you like to:</p>
+        <div class="flex gap-4">
+          <button type="button" id="record-video" class="flex-1 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400">
+            Record a Video
+          </button>
+          <button type="button" id="send-text" class="flex-1 bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-400">
+            Send in Text
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <!-- Right Section: Preview -->
+  <section class="w-full md:w-1/2 p-6 bg-gray-50">
+    <header class="mb-4">
+      <h2 class="text-lg font-semibold text-gray-800">Preview</h2>
+    </header>
+    <div class="space-y-4">
+      <p><strong>Who are you:</strong> <span id="preview-who" class="text-gray-700">Not provided</span></p>
+      <p><strong>How has it helped:</strong> <span id="preview-help" class="text-gray-700">Not provided</span></p>
+      <p><strong>Best thing:</strong> <span id="preview-best" class="text-gray-700">Not provided</span></p>
+    </div>
+  </section>
+</div> {% endcomment %}
+{% comment %} 
+<div class="bg-white shadow-lg rounded-lg w-full max-w-5xl flex flex-col md:flex-row">
+  <!-- Left Section: Live Preview -->
+  <section class="w-full md:w-1/2 p-6 bg-gray-50">
+    <header class="mb-6">
+      <h1 id="preview-header" class="text-2xl font-bold text-gray-800">Header title</h1>
+      <p id="preview-message" class="text-gray-600 mt-2">
+        Would you like to give a shoutout for xyz? Write a warm message to your customers and provide directions.
+      </p>
+    </header>
+    <div class="space-y-4">
+      <p><strong>Who are you:</strong> <span id="preview-question-1" class="text-gray-700">Who are you / what are you working on?</span> <span class="text-sm text-gray-500">(44/100)</span></p>
+      <p><strong>How has it helped:</strong> <span id="preview-question-2" class="text-gray-700">How has [our product/service] helped you?</span> <span class="text-sm text-gray-500">(43/100)</span></p>
+      <p><strong>Best thing:</strong> <span id="preview-question-3" class="text-gray-700">What is the best thing about [our product/service]?</span> <span class="text-sm text-gray-500">(52/100)</span></p>
+    </div>
+  </section>
+
+  <!-- Right Section: Customization Form -->
+  <section class="w-full md:w-1/2 p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Customize Testimonial</h2>
+    <form id="customization-form" class="space-y-4">
+      <!-- Header Title -->
+      <div>
+        <label for="header-title" class="block text-sm font-medium text-gray-700">Header Title *</label>
+        <input id="header-title" type="text" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Enter header title" value="Header title">
+      </div>
+
+      <!-- Custom Message -->
+      <div>
+        <label for="custom-message" class="block text-sm font-medium text-gray-700">Your Custom Message *</label>
+        <textarea id="custom-message" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" rows="3" placeholder="Write your custom message">Would you like to give a shoutout for xyz?</textarea>
+      </div>
+
+      <!-- Questions -->
+      <h3 class="text-lg font-medium text-gray-800">Questions</h3>
+      <!-- Question 1 -->
+      <div>
+        <label for="question-1" class="block text-sm font-medium text-gray-700">Question 1 *</label>
+        <input id="question-1" type="text" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Enter question" value="Who are you / what are you working on?">
+        <label for="limit-1" class="block text-sm text-gray-600 mt-1">Character Limit</label>
+        <input id="limit-1" type="number" class="w-20 mt-1 p-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="100">
+      </div>
+
+      <!-- Question 2 -->
+      <div>
+        <label for="question-2" class="block text-sm font-medium text-gray-700">Question 2 *</label>
+        <input id="question-2" type="text" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Enter question" value="How has [our product/service] helped you?">
+        <label for="limit-2" class="block text-sm text-gray-600 mt-1">Character Limit</label>
+        <input id="limit-2" type="number" class="w-20 mt-1 p-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="100">
+      </div>
+
+      <!-- Question 3 -->
+      <div>
+        <label for="question-3" class="block text-sm font-medium text-gray-700">Question 3 *</label>
+        <input id="question-3" type="text" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Enter question" value="What is the best thing about [our product/service]?">
+        <label for="limit-3" class="block text-sm text-gray-600 mt-1">Character Limit</label>
+        <input id="limit-3" type="number" class="w-20 mt-1 p-1 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="100">
+      </div>
+    </form>
+  </section>
+</div> {% endcomment %}
+
+
+{% comment %} <div class="bg-white shadow-lg rounded-lg w-full max-w-6xl flex flex-col md:flex-row">
+  <!-- Left Section: Live Preview -->
+  <section class="w-full md:w-1/2 p-6 bg-gradient-to-br from-indigo-100 to-purple-50 rounded-l-lg">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <header class="mb-6 border-b pb-4">
+        <h1 id="preview-header" class="text-xl font-bold text-indigo-700">
+          Header title
+        </h1>
+        <p id="preview-message" class="text-gray-600 mt-2">
+          Would you like to give a shoutout for xyz? Write a warm message to your customers and provide directions.
+        </p>
+      </header>
+      <div class="space-y-6">
+        <div class="p-4 bg-indigo-50 rounded-md">
+          <h3 class="text-sm text-indigo-600 font-medium">Who are you:</h3>
+          <p id="preview-question-1" class="text-gray-700">Who are you / what are you working on?</p>
+          <span class="text-xs text-gray-500">(44/100)</span>
+        </div>
+        <div class="p-4 bg-purple-50 rounded-md">
+          <h3 class="text-sm text-purple-600 font-medium">How has it helped:</h3>
+          <p id="preview-question-2" class="text-gray-700">How has [our product/service] helped you?</p>
+          <span class="text-xs text-gray-500">(43/100)</span>
+        </div>
+        <div class="p-4 bg-indigo-50 rounded-md">
+          <h3 class="text-sm text-indigo-600 font-medium">Best thing:</h3>
+          <p id="preview-question-3" class="text-gray-700">What is the best thing about [our product/service]?</p>
+          <span class="text-xs text-gray-500">(52/100)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right Section: Customization Form -->
+  <section class="w-full md:w-1/2 p-6 bg-gray-100 rounded-r-lg">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Customize Testimonial</h2>
+    <form id="customization-form" class="space-y-6">
+      <!-- Header Title -->
+      <div>
+        <label for="header-title" class="block text-sm font-medium text-gray-700">Header Title *</label>
+        <input id="header-title" type="text" class="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-gray-500" placeholder="Enter header title" value="Header title">
+      </div>
+
+      <!-- Custom Message -->
+      <div>
+        <label for="custom-message" class="block text-sm font-medium text-gray-700">Your Custom Message *</label>
+        <textarea id="custom-message" class="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-gray-500" rows="4" placeholder="Write your custom message here...">Would you like to give a shoutout for xyz?</textarea>
+      </div>
+
+      <!-- Questions -->
+      <h3 class="text-lg font-medium text-gray-800">Questions</h3>
+      <!-- Question 1 -->
+      <div>
+        <label for="question-1" class="block text-sm font-medium text-gray-700">Question 1 *</label>
+        <input id="question-1" type="text" class="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-gray-500" placeholder="Who are you / what are you working on?" value="Who are you / what are you working on?">
+        <label for="limit-1" class="block text-xs text-gray-600 mt-1">Character Limit</label>
+        <input id="limit-1" type="number" class="w-24 mt-2 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="100">
+      </div>
+
+      <!-- Question 2 -->
+      <div>
+        <label for="question-2" class="block text-sm font-medium text-gray-700">Question 2 *</label>
+        <input id="question-2" type="text" class="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-gray-500" placeholder="How has [our product/service] helped you?" value="How has [our product/service] helped you?">
+        <label for="limit-2" class="block text-xs text-gray-600 mt-1">Character Limit</label>
+        <input id="limit-2" type="number" class="w-24 mt-2 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="100">
+      </div>
+
+      <!-- Question 3 -->
+      <div>
+        <label for="question-3" class="block text-sm font-medium text-gray-700">Question 3 *</label>
+        <input id="question-3" type="text" class="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-gray-500" placeholder="What is the best thing about [our product/service]?" value="What is the best thing about [our product/service]?">
+        <label for="limit-3" class="block text-xs text-gray-600 mt-1">Character Limit</label>
+        <input id="limit-3" type="number" class="w-24 mt-2 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="100">
+      </div>
+    </form>
+  </section>
+</div> {% endcomment %}
+
+
+<!-- Modal Trigger Button -->
+{% comment %} <button id="openModal" class="bg-indigo-600 text-white px-4 py-2 rounded-lg">Open Testimonial Modal</button> {% endcomment %}
+
+<!-- Modal -->
+<div id="create-space" class="fixed inset-0 hidden justify-center items-center bg-modal-backdrop ">
+  <div class="modal-content bg-white rounded-lg shadow-lg w-full max-w-6xl p-6 md:flex-row overflow-auto max-h-screen ">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800">Customize Testimonial</h2>
+      <button id="closeModal" onclick="createSpaceToggle()" class="text-gray-600 hover:text-gray-800">&times;</button>
+    </div>
+    
+    <div class="flex space-x-6">
+      <!-- Left Section: Live Preview -->
+      <section class="w-full md:w-1/2 p-6 bg-gradient-to-br from-indigo-100 to-purple-50 rounded-l-lg">
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <header class="mb-6 border-b pb-4">
+            <h1 id="preview-header" class="text-xl font-bold text-indigo-700">Header title</h1>
+            <p id="preview-message" class="text-gray-600 mt-2">Would you like to give a shoutout for xyz? Write a warm message to your customers and provide directions.</p>
+          </header>
+          <div class="space-y-6">
+            <div class="p-4 bg-indigo-50 rounded-md">
+              <h3 class="text-sm text-indigo-600 font-medium">Who are you:</h3>
+              <p id="preview-question-1" class="text-gray-700">Who are you / what are you working on?</p>
+              <span class="text-xs text-gray-500">(44/100)</span>
+            </div>
+            <div class="p-4 bg-purple-50 rounded-md">
+              <h3 class="text-sm text-purple-600 font-medium">How has it helped:</h3>
+              <p id="preview-question-2" class="text-gray-700">How has [our product/service] helped you?</p>
+              <span class="text-xs text-gray-500">(43/100)</span>
+            </div>
+            <div class="p-4 bg-indigo-50 rounded-md">
+              <h3 class="text-sm text-indigo-600 font-medium">Best thing:</h3>
+              <p id="preview-question-3" class="text-gray-700">What is the best thing about [our product/service]?</p>
+              <span class="text-xs text-gray-500">(52/100)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Section: Customization Form -->
+      <section class="w-full md:w-1/2 p-6 bg-gray-100 rounded-r-lg">
+        <form id="customization-form" class="space-y-6">
+          <!-- Header Title -->
+          <div>
+            <label for="header-title" class="block text-sm font-medium text-gray-700">Header Title *</label>
+            <input id="header-title" type="text" class="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-black-400" placeholder="Enter header title" value="Header title">
+          </div>
+
+          <!-- Custom Message -->
+          <div>
+            <label for="custom-message" class="block text-sm font-medium text-gray-700">Your Custom Message *</label>
+            <textarea id="custom-message" class="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-black-400" rows="4" placeholder="Write your custom message here...">Would you like to give a shoutout for xyz?</textarea>
+          </div>
+
+          <!-- Questions -->
+          <h3 class="text-lg font-medium text-gray-800">Questions</h3>
+          <!-- Question 1 -->
+          <div>
+            <label for="question-1" class="block text-sm font-medium text-gray-700">Question 1 *</label>
+            <input id="question-1" type="text" class="w-full mt-2 p-3 border border-black-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-black-400" placeholder="Who are you / what are you working on?" value="Who are you / what are you working on?">
+            <label for="limit-1" class="block text-xs text-gray-600 mt-1">Character Limit</label>
+            <input id="limit-1" type="number" class="w-24 mt-2 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="100">
+          </div>
+
+          <!-- Question 2 -->
+          <div>
+            <label for="question-2" class="block text-sm font-medium text-gray-700">Question 2 *</label>
+            <input id="question-2" type="text" class="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-black-400" placeholder="How has [our product/service] helped you?" value="How has [our product/service] helped you?">
+            <label for="limit-2" class="block text-xs text-gray-600 mt-1">Character Limit</label>
+            <input id="limit-2" type="number" class="w-24 mt-2 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="100">
+          </div>
+
+          <!-- Question 3 -->
+          <div>
+            <label for="question-3" class="block text-sm font-medium text-gray-700">Question 3 *</label>
+            <input id="question-3" type="text" class="w-full mt-2 p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-black-400" placeholder="What is the best thing about [our product/service]?" value="What is the best thing about [our product/service]?">
+            <label for="limit-3" class="block text-xs text-gray-600 mt-1">Character Limit</label>
+            <input id="limit-3" type="number" class="w-24 mt-2 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="100">
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+  function spaceToggleDropdown() {
+    
+    const dropdown = document.getElementById("space-dropdown-menu");
+    dropdown.classList.toggle("hidden"); // Toggles visibility
+  }
+
+  function deleteSpaceToggle(){
+    const deletespace= document.getElementById("delete-space");
+    deletespace.classList.toggle("hidden");
+  }
+
+  function createSpaceToggle(){
+    const createspace= document.getElementById("create-space");
+    createspace.classList.toggle("hidden");
+
+  }
+
+
+  const headerTitleInput = document.getElementById('header-title');
+    const customMessageInput = document.getElementById('custom-message');
+    const question1Input = document.getElementById('question-1');
+    const question2Input = document.getElementById('question-2');
+    const question3Input = document.getElementById('question-3');
+    const limit1Input = document.getElementById('limit-1');
+    const limit2Input = document.getElementById('limit-2');
+    const limit3Input = document.getElementById('limit-3');
+
+    const previewHeader = document.getElementById('preview-header');
+    const previewMessage = document.getElementById('preview-message');
+    const previewQuestion1 = document.getElementById('preview-question-1');
+    const previewQuestion2 = document.getElementById('preview-question-2');
+    const previewQuestion3 = document.getElementById('preview-question-3');
+
+    headerTitleInput.addEventListener('input', () => {
+      previewHeader.textContent = headerTitleInput.value || "Header title";
+    });
+
+    customMessageInput.addEventListener('input', () => {
+      previewMessage.textContent = customMessageInput.value || "Your custom message goes here...";
+    });
+
+    question1Input.addEventListener('input', () => {
+      previewQuestion1.textContent = question1Input.value || "Who are you / what are you working on?";
+    });
+
+    question2Input.addEventListener('input', () => {
+      previewQuestion2.textContent = question2Input.value || "How has [our product/service] helped you?";
+    });
+
+    question3Input.addEventListener('input', () => {
+      previewQuestion3.textContent = question3Input.value || "What is the best thing about [our product/service]?";
+    });
+</script>
+
+ {% endblock %}

@@ -1,0 +1,19 @@
+{% comment %} {% extends "../layout.html" %}
+{% load socialaccount %}
+
+{% block content %}
+
+  
+  
+    {% if user.is_authenticated %}
+    <p>Welcome. You are logged in as {{user.username}} </p>
+
+    {% else %}
+    <a href="{% provider_login_url 'google' %}">Login with Google</a>
+    {% endif %}
+
+    <h1 class="bg-orange-500 text-3xl" >this is testing of tailwind</h1>
+
+    <p>Click here to <a href="/auth/user-logout">Sign out</a></p>
+  
+{% endblock content %} {% endcomment %}
