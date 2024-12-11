@@ -9,12 +9,16 @@ class ClientSpacePage(APIView):
     def get(self, request, space_name):
         try:
             
-            space_page= Space.objects.filter(slug=slugify(space_name))
+            space_page= Space.objects.get(slug=slugify(space_name))
             
-            serializer= SpaceSerializers(space_page, many=True)
-            return Response(serializer.data)
+            serializer= SpaceSerializers(space_page)
+            context = {
+                "data": serializer.data
+            }
+            return render(request , 'feedback/index.html' ,context)
             
         except Space.DoesNotExist:
             return Response({'message':"Not found!"})
         except Exception as e:
             return Response({'error': str(e)})
+       

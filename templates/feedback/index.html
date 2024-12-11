@@ -1,0 +1,81 @@
+{% extends "../layout.html" %}
+{% load socialaccount %}
+
+{% block content %}
+
+
+<div class="pt-20 md:pt-24 pb-12 md:pb-20">
+    <div class="max-w-3xl mx-auto text-center pb-6 md:pb-16">
+      <!-- Logo Section -->
+      <div class="relative inline-flex flex-col justify-center mb-4 md:mb-12">
+        <img
+          loading="lazy"
+          class="mx-auto rounded-md"
+          src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/spaces%2Fnew-space2%2Flogo?alt=media&token=77074c15-9761-40b2-841b-debf96d884bc"
+          alt="Feedback Logo"
+          style="height: 100px;"
+        />
+      </div>
+  
+      <!-- Title Section -->
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-700">{{data.name}}</h1>
+  
+      <!-- Custom Message Section -->
+      <p class="text-base md:text-xl text-gray-500">
+        <div class="custom-message">
+          <p>dd</p>
+        </div>
+      </p>
+  
+      <!-- Questions Section -->
+      <div class="w-full md:w-3/4 px-4 py-4 text-left mx-auto">
+        <h3 class="text-lg leading-6 font-semibold text-gray-700 uppercase mb-2">Questions</h3>
+        <div class="w-10 mb-2 border-b-4" style="border-color: rgb(93, 93, 255);"></div>
+        <ul class="mt-2 max-w-xl text-base list-disc pl-4 text-gray-500">
+          <li>Who are you / what are you working on?</li>
+          <li>How has [our product / service] helped you?</li>
+          <li>What is the best thing about [our product / service]</li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Action Buttons Section -->
+    <div class="mt-2 md:mt-6">
+      <div class="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
+        <div>
+          <button class="btn text-white bg-purple-600 hover:bg-purple-700 w-full mb-4 sm:w-auto sm:mb-0 flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-3"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+            </svg>
+            Record a video
+          </button>
+        </div>
+        <div>
+          <button class="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4 flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 mr-3"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+              />
+            </svg>
+            Send in text
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% endblock %}

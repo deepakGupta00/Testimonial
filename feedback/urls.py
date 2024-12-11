@@ -4,7 +4,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('feedback/<str:space_name>/',  ClientSpacePage.as_view() , name='space-name'),
-    
+    path('<str:space_name>',  ClientSpacePage.as_view() , name='space-name'),
     
 ]
