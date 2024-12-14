@@ -4,37 +4,39 @@
 {% block content %}
 
 
-<div class="pt-20 md:pt-24 pb-12 md:pb-20">
+<div class="pt-20 md:pt-24 pb-12 md:pb-20 bg-{{data.theme}}">
     <div class="max-w-3xl mx-auto text-center pb-6 md:pb-16">
-      <!-- Logo Section -->
+      
+      
       <div class="relative inline-flex flex-col justify-center mb-4 md:mb-12">
         <img
           loading="lazy"
           class="mx-auto rounded-md"
-          src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/spaces%2Fnew-space2%2Flogo?alt=media&token=77074c15-9761-40b2-841b-debf96d884bc"
+          src="{{data.logo}}"
           alt="Feedback Logo"
           style="height: 100px;"
         />
       </div>
-  
+     
       <!-- Title Section -->
-      <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-700">{{data.name}}</h1>
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-gray-700">{{data.header_title}}</h1>
   
       <!-- Custom Message Section -->
       <p class="text-base md:text-xl text-gray-500">
         <div class="custom-message">
-          <p>dd</p>
+          <p  class=" text-gray-600" >{{data.custom_message}}</p>
         </div>
       </p>
   
-      <!-- Questions Section -->
       <div class="w-full md:w-3/4 px-4 py-4 text-left mx-auto">
         <h3 class="text-lg leading-6 font-semibold text-gray-700 uppercase mb-2">Questions</h3>
         <div class="w-10 mb-2 border-b-4" style="border-color: rgb(93, 93, 255);"></div>
         <ul class="mt-2 max-w-xl text-base list-disc pl-4 text-gray-500">
-          <li>Who are you / what are you working on?</li>
-          <li>How has [our product / service] helped you?</li>
-          <li>What is the best thing about [our product / service]</li>
+          
+        {% for question in data.questions %}
+          <li>{{question}}</li>
+          
+        {% endfor %}
         </ul>
       </div>
     </div>
@@ -56,7 +58,7 @@
           </button>
         </div>
         <div>
-          <button class="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4 flex items-center justify-center">
+          <button class="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4 flex items-center justify-center" onclick="TextToggle()" >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5 mr-3"
@@ -78,4 +80,183 @@
     </div>
   </div>
   
+
+
+<!-- Main modal -->
+<div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow light:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t light:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 light:text-white">
+                  Write text testimonial to
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center light:hover:bg-gray-600 light:hover:text-white" data-modal-toggle="crud-modal" onclick="TextToggle()">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form class="p-4 md:p-5">
+              <h3 class="text-lg leading-6 font-semibold text-gray-700 uppercase mb-2">Questions</h3>
+              <div class="w-10 mb-2 border-b-4" style="border-color: rgb(93, 93, 255);"></div>
+              <ul class="mt-2 max-w-xl text-base list-disc pl-4 text-gray-500">
+                
+              {% for question in data.questions %}
+                <li>{{question}}</li>
+                
+              {% endfor %}
+              </ul>
+                <div class="grid gap-4 mb-4 grid-cols-2 pt-2">
+                    <div class="col-span-2">
+                        <textarea type="text" rows="4" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 light:bg-gray-600 light:border-gray-500 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500"  required=""></textarea>
+                    </div>
+                    <div class="col-span-2 ">
+                          <label for="multiple_files" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Attach Image(s)</label>
+                          <input type="file" accept="image/png,image/jpeg,image/jpg,image/gif,image/webp" name="files" id="multiple_files" class="hidden" multiple>
+                          <label for="multiple_files" class="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-600 hover:text-gray-800 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out cursor-pointer">
+                              Choose file
+                          </label>
+                        
+                        <div id="file_preview" class="mt-4 grid grid-cols-2 gap-4"></div>
+                    </div>
+                    <div class="col-span-2">
+                      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Your Name</label>
+                      <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 light:bg-gray-600 light:border-gray-500 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500"  required="">
+                    </div>
+                    <div class="col-span-2">
+                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 light:text-white"> Your Email</label>
+                      <input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 light:bg-gray-600 light:border-gray-500 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500"  required="">
+                    </div>
+                     
+                    <label for="userimage" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Upload Your Photo</label>
+                    <div class="col-span-2 mt-2 flex items-center">
+                     
+                      <div id="imagePreview" class="rounded-full h-20 w-20 bg-gray-300 flex items-center justify-center overflow-hidden">
+                          <img id="previewImage" src="#" alt="Selected Image" class="hidden h-full w-full object-cover" />
+                      </div>
+                      
+                      <div class="ml-5 rounded-md">
+                          <input type="file" accept="image/png,image/jpeg,image/jpg,image/gif,image/webp" name="newAvatarURL" id="newAvatarURL" class="hidden" />
+                          <label for="newAvatarURL" class="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-600 hover:text-gray-800 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out cursor-pointer">
+                              Choose file
+                          </label>
+                      </div>
+                  </div>
+
+                  <div class="col-span-2">
+                  
+                    <div class="mt-1 relative flex rounded-md items-start">
+                      <div class="flex items-center h-5">
+                        <input required="" id="confirm" name="confirm" type="checkbox" class="focus:ring-purple-500 h-4 w-4 text-purple-600 rounded"></div>
+                        <div class="ml-2 text-sm leading-5 overflow-auto" style="max-height: 100px;">
+                          <label for="confirm" class=" text-gray-600">I give permission to use this testimonial across social channels and other marketing efforts</label>
+                        </div>
+                      </div>
+                  </div>
+                    
+                  <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-purple-600 text-base font-medium text-white hover:bg-purple-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">Send</button>
+                  <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-200 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm" onclick="TextToggle()" >Cancel</button>
+                
+            </form>
+        </div>
+    </div>
+</div> 
+<script>
+  function TextToggle() {
+    const modal = document.getElementById("crud-modal");
+    modal.classList.toggle("hidden");
+    modal.classList.toggle("flex");
+  }
+
+  const fileInput = document.getElementById('multiple_files');
+  const filePreview = document.getElementById('file_preview');
+
+  let selectedFiles = []; 
+
+  fileInput.addEventListener('change', function () {
+     
+      selectedFiles = Array.from(fileInput.files);
+
+      updatePreview();
+  });
+
+  
+  function updatePreview() {
+      filePreview.innerHTML = ''; 
+
+      selectedFiles.forEach((file, index) => {
+          const fileContainer = document.createElement('div');
+          fileContainer.className = 'relative flex flex-col items-center';
+
+          if (file.type.startsWith('image/')) {
+              const reader = new FileReader();
+
+              reader.onload = function (e) {
+                  const img = document.createElement('img');
+                  img.src = e.target.result;
+                  img.alt = file.name;
+                  img.className = 'w-full h-24 object-cover rounded-lg border';
+                  fileContainer.appendChild(img);
+              };
+
+              reader.readAsDataURL(file);
+          } else {
+              
+              const fileName = document.createElement('p');
+              fileName.textContent = file.name;
+              fileName.className = 'text-sm text-gray-700 dark:text-white';
+              fileContainer.appendChild(fileName);
+          }
+
+          const removeBtn = document.createElement('button');
+          removeBtn.textContent = 'Remove';
+          removeBtn.className = 'absolute top-1 right-1 bg-red-500 text-white text-xs rounded px-2 py-1';
+          removeBtn.addEventListener('click', function () {
+              
+              selectedFiles.splice(index, 1);
+              updatePreview(); 
+          });
+
+          fileContainer.appendChild(removeBtn);
+          filePreview.appendChild(fileContainer);
+      });
+  }
+
+
+
+    const userimage = document.getElementById('newAvatarURL');
+    const previewContainer = document.getElementById('imagePreview');
+    const previewImage = document.getElementById('previewImage');
+    const placeholderText = document.getElementById('placeholderText');
+
+    userimage.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.classList.remove('hidden');
+                placeholderText.classList.add('hidden');
+                previewContainer.classList.add('border-blue-500');
+                previewContainer.classList.remove('bg-gray-300');
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            previewImage.classList.add('hidden');
+            placeholderText.classList.remove('hidden');
+            previewContainer.classList.add('bg-gray-300');
+            previewContainer.classList.remove('border-blue-500');
+        }
+    });
+  
+</script>
+
+
   {% endblock %}

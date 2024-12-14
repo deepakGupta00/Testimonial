@@ -4,7 +4,7 @@ from dashboard.models import Space
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from django.utils.text import slugify
-
+import ast
 class ClientSpacePage(APIView):
     def get(self, request, space_name):
         try:
@@ -12,8 +12,13 @@ class ClientSpacePage(APIView):
             space_page= Space.objects.get(slug=slugify(space_name))
             
             serializer= SpaceSerializers(space_page)
+            data= serializer.data
+         
+            data['questions']= ast.literal_eval(data['questions'])
+            
+          
             context = {
-                "data": serializer.data
+                "data": data
             }
             return render(request , 'feedback/index.html' ,context)
             

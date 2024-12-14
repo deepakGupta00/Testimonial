@@ -1,3 +1,22 @@
 from django.db import models
 
 # Create your models here.
+
+class Testimonial(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    text = models.TextField()
+    image = models.ImageField(upload_to='testimonials/images/', blank=True, null=True)
+    additional_images = models.ManyToManyField('TestimonialImage', blank=True)
+    permission = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Testimonial by {self.name}"
+
+class TestimonialImage(models.Model):
+    image = models.ImageField(upload_to='testimonials/additional_images/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Image {self.id}"
