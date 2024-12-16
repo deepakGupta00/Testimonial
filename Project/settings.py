@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'dashboard',
+    'feedback',
     'rest_framework',
     'tailwind',
     'theme',

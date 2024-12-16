@@ -1,9 +1,10 @@
 from django.db import models
-
+from dashboard.models import Space
 # Create your models here.
 
 class Testimonial(models.Model):
     name = models.CharField(max_length=255)
+    space= models.ForeignKey( Space,related_name='testimonial' , on_delete=models.CASCADE)
     email = models.EmailField()
     text = models.TextField()
     image = models.ImageField(upload_to='testimonials/images/', blank=True, null=True)
