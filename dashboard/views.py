@@ -7,10 +7,16 @@ from rest_framework.response import Response
 from .serializers import SpaceSerializer
 from .models import *
 from rest_framework import status
-
+import ast
 # Create your views here.
 def index(request):
-    return render(request, 'dashboard/index.html')
+    space_page= Space.objects.all()
+
+   
+    context={
+        "spaces":space_page
+    }
+    return render(request, 'dashboard/index.html' , context )
 
 @login_required(login_url='login/')
 def home(request):

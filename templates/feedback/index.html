@@ -95,7 +95,7 @@
                 
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5" action="{% url 'create_testimonial' %}" method="post" enctype="multipart/form-data">
+            <form class="p-4 md:p-5" action="{% url 'feedback:create_testimonial' %}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
               {{form.as_p}}
               <input type='hidden' name='space'  value="{{data.id}}">

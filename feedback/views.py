@@ -12,14 +12,14 @@ from django.contrib import messages
 
 
 class ClientSpacePage(APIView):
-    def get(self, request, space_name):
+    def get(self, request, slug):
         try:
             
-            space_page= Space.objects.get(slug=slugify(space_name))
+            space_page= Space.objects.get(slug=slug)
             
             serializer= SpaceSerializers(space_page)
             data= serializer.data
-         
+       
             data['questions']= ast.literal_eval(data['questions'])
             
           

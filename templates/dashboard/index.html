@@ -137,21 +137,24 @@
           </div>
         </div>
       </div>
-    
+      
+
       <ul class="mt-6 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for space in spaces %}
         <li class="col-span-1 flex flex-col bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200 ease-in-out">
           <div class="flex-1 p-6">
             <div class="flex items-center justify-between">
-              <a class="flex items-center space-x-3 group" href="/products/bls-testimonials">
+              <a class="flex items-center space-x-3 group" href="{% url 'feedback:space_name' space.slug %}">
+              
                 <img 
                   loading="lazy" 
                   class="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex-shrink-0 object-contain" 
-                  src="https://firebasestorage.googleapis.com/v0/b/testimonialto.appspot.com/o/spaces%2Fbls-testimonials%2Flogo?alt=media&amp;token=f2035445-b149-49aa-a1c1-fb9a7d848864" 
-                  alt="BLS Testimonials">
+                  src="{{space.logo.url}}" 
+                  alt="{{space.name}}">
                 <span 
                   class="text-gray-800 dark:text-gray-100 font-semibold truncate group-hover:text-black dark:group-hover:text-white text-base" 
                   title="">
-                  BLS Testimonials
+                  {{space.name}}
                 </span>
               </a>
               <div class="relative inline-block text-left">
@@ -204,6 +207,7 @@
             </div>
           </div>
         </li>
+        {% endfor %} 
       </ul>
     </div>
     
