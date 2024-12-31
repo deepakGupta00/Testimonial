@@ -26,7 +26,7 @@ urlpatterns = [
     path('auth/', include('authentication.urls')),
     path('dashboard/', include('dashboard.urls')),
     
-    
+    path('embed/', include('embed.urls')),
     
     path("__reload__/", include("django_browser_reload.urls")),
     

@@ -1,0 +1,23 @@
+name: testimonial
+
+services:
+  project:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: testimonial
+    ports:
+      - "8000:8000"
+
+  db:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRESS_DB: postgres
+
+    ports:
+      - "5432:5432"
+
+  

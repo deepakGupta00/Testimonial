@@ -31,7 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+X_FRAME_OPTIONS = 'ALLOWALL'
 
+# X_FRAME_OPTIONS = 'ALLOW-FROM http://127.0.0.1:8000'
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'embed'
 ]
 
 TAILWIND_APP_NAME= 'theme'

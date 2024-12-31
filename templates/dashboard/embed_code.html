@@ -1,0 +1,52 @@
+
+
+<!-- embed_code.html -->
+<p>Copy the embed code below:</p>
+
+<div style="width: 600px; margin: 20px auto; border: 1px solid #ddd; border-radius: 8px; padding: 16px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif;">
+    <!-- Widget Header -->
+    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+        <div style="flex-grow: 1;">
+            <h2 style="margin: 0; font-size: 20px; color: #333;">{{ widget.name }}</h2>
+            <p style="margin: 4px 0; color: #777; font-size: 14px;">{{ widget.email }}</p>
+        </div>
+        {% if widget.image %}
+        <img src="{{ widget.image }}" alt="Widget Image" style="width: 50px; height: 50px; border-radius: 50%;">
+        {% else %}
+        <div style="width: 50px; height: 50px; border-radius: 50%; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center;">
+            <span style="font-size: 20px; color: #bbb;">?</span>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Testimonial Content -->
+    <p style="font-size: 16px; color: #555; margin: 16px 0;">{{ widget.text }}</p>
+
+    
+    {% if widget.additional_images %}
+    <div style="display: flex; gap: 8px; margin-top: 16px;">
+        {% for image in widget.additional_images %}
+        {% comment %} {{image.image}} {% endcomment %}
+        <img src="{{image.image}}" alt="Additional Image" style="width: 80px; height: 80px; border-radius: 8px; object-fit: cover;">
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Footer -->
+    <p style="margin-top: 16px; font-size: 12px; color: #aaa;">Created at: <span id="createdAt"></span></p>
+</div> 
+
+
+<script>
+    // Get the ISO string from Django template
+    const createdAtStr = "{{ widget.created_at }}";
+
+    // Create a new Date object from the ISO string
+    const createdAt = new Date(createdAtStr);
+
+    // Format the date into a readable format (e.g., YYYY-MM-DD HH:mm:ss)
+    const formattedDate = createdAt.toLocaleString();
+
+    // Insert the formatted date into the span
+    document.getElementById('createdAt').textContent = formattedDate;
+</script>

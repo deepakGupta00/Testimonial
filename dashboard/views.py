@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from rest_framework.views import APIView 
 from rest_framework.response import Response
+
+from feedback.models import Testimonial
 from .serializers import SpaceSerializer
 from .models import *
 from rest_framework import status
@@ -27,6 +29,35 @@ class GetResponse(APIView):
         return Response({
             'message':'hello world!'
         })
+
+
+class getProduct(APIView):
+    def get(self,request, space_slug):
+        getreview= Testimonial.objects.filter(space__slug=space_slug)
+        space=Space.objects.get(slug=space_slug)
+        print(getreview)
+        context={
+            "items":getreview,
+            "space": space
+        }
+        return render(request, 'product/index.html',context )
+    
+    
+def embed_widget(request, widget_id):
+    # Fetch the widget from the database
+    widget = get_object_or_404(Testimonial, id=widget_id)
+    # Generate the HTML content for the widget
+    content = f"<div>Widget Name: {widget.name}</div>"
+    return HttpResponse(content, content_type="text/html")
+
+# views.py
+from django.shortcuts import render
+
+def generate_embed_code(request, widget_id):
+    context={"widget": {"id": widget_id}}
+    return render(request, "dashboard/embed_code.html",context)
+
+
 
 # class CreateSpace(APIView):
 #     def post(self, request):
