@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -5,6 +6,7 @@ from django.shortcuts import redirect
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 
+from embed.serializers import TestimonialSerializer
 from feedback.models import Testimonial
 from .serializers import SpaceSerializer
 from .models import *
@@ -37,7 +39,7 @@ class getProduct(APIView):
         space=Space.objects.get(slug=space_slug)
         print(getreview)
         context={
-            "items":getreview,
+            "items":TestimonialSerializer(getreview, many=True).data,
             "space": space
         }
         return render(request, 'product/index.html',context )
@@ -122,3 +124,42 @@ class SpaceView(APIView):
         return Response(
             {"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST
         )
+        
+
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+def send_mail_page(request):
+   
+
+    if request.method == 'POST':
+        
+        address = request.POST.get('address')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        if address and subject and message:
+            try:
+                send_mail(subject, message, settings.EMAIL_HOST_USER, [address])
+                print('Email sent successfully')
+            except Exception as e:
+                print(f'Error sending email: {e}')
+        else:
+            print('All fields are required')
+    return HttpResponse("mail-test")
+
+
+import google.generativeai as genai
+def streamtext(request):
+
+    genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    response = model.generate_content("Explain how AI works", stream=True)
+    for chunk in response:
+        print(chunk.text, end="")
+    return HttpResponse("streamtext")

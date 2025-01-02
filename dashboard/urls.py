@@ -15,4 +15,8 @@ urlpatterns = [
     path('product/<str:space_slug>', getProduct.as_view(), name='get_product_review'),
     
     path('embed/<uuid:widget_id>', generate_embed_code, name='embed_widget'),
+    
+    path('mail-test',send_mail_page, name='mail-test'),
+    
+    path('textstream',streamtext, name='textstream'),
 ]
