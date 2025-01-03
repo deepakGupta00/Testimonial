@@ -19,4 +19,6 @@ urlpatterns = [
     path('mail-test',send_mail_page, name='mail-test'),
     
     path('textstream',streamtext, name='textstream'),
+    
+    path('loading', loading.as_view(), name='loading'),
 ]

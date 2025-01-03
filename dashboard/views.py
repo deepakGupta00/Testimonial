@@ -1,4 +1,5 @@
 import os
+import time
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -43,7 +44,11 @@ class getProduct(APIView):
             "space": space
         }
         return render(request, 'product/index.html',context )
-    
+
+class loading(APIView):
+    def get(self, request):
+        time.sleep(5)
+        return Response({"message":"Loading complete!"})
     
 def embed_widget(request, widget_id):
     # Fetch the widget from the database
